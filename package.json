@@ -1,0 +1,32 @@
+{
+  "name": "tarea1",
+  "version": "1.0.1",
+  "description": "",
+  "main": "ESB.js",
+  "scripts": {
+    "start": "node ESB.js",
+    "dev": "nodemon --watch ESB.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "client-oauth2": "^4.2.5",
+    "express": "^4.17.1",
+    "gulp-live-server": "0.0.31",
+    "http": "0.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "path": "^0.12.7",
+    "readline-sync": "^1.4.10",
+    "request": "^2.88.0",
+    "simple-oauth2": "^3.3.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-zip": "^5.0.1",
+    "nodemon": "^2.0.2"
+  }
+}
