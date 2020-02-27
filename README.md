@@ -42,3 +42,10 @@ Arrancamos el restaurante, cliente y repartidor :
  
  http://tareas.com:8080/github-webhook/ 
  El cual cada commit que se haga a la rama master o develop lo va a registrar en Jenkins para poder llevar un control de ella misma.
+
+Gulp es una herramienta que nos facilita las tareas dentro de nuestro proyecto, automatiza y mejora tu flujo de trabajo.
+
+Creamos una carpeta llamada Gulp con el cual creamos un archivo .js llamado Gulpfile el cual contiene:
+
+  las librerías correspondientes y una forma de concatener todo los ficheros .js que existe en nuestra raiz del proyecto y ponerlo en un solo que le llamamos compilado.js. 
+  el cual creamos un solo compilado para nuestro proyecto.
