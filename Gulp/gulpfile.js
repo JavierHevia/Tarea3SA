@@ -2,6 +2,7 @@ var gulp = require('gulp')
 var zip = require('gulp-zip')
 const concat = require('gulp-concat')
 var git = require('gulp-git')
+var tagVersion = require('gulp-tag-version')
 // const uglify = require('gulp-uglify')
 // se ralizaára la siguiente tarea
 
@@ -26,4 +27,18 @@ gulp.task('compilar', function js () {
 gulp.task('commit', function () {
   return gulp.src('../*')
     .pipe(git.commit('Prueba1'))
+    .pipe(tagVersion())
+})
+
+gulp.task('push', function () {
+  git.push('origin', 'master', function (err) {
+    if (err) throw err
+  })
+})
+
+// Tag the repo with a version
+gulp.task('tag', function () {
+  git.tag('v1.1.2', 'Version message', function (err) {
+    if (err) throw err
+  })
 })
