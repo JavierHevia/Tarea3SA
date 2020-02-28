@@ -1,6 +1,7 @@
 var gulp = require('gulp')
 var zip = require('gulp-zip')
 const concat = require('gulp-concat')
+var conventionalGithubReleaser = require('conventional-github-releaser')
 var git = require('gulp-git')
 var fs = require('fs')
 // const uglify = require('gulp-uglify')
@@ -24,6 +25,15 @@ gulp.task('compilar', function js () {
     .pipe(gulp.dest('Destino')) // lo deposita dentro de una carpeta Destino
 })
 
+gulp.task('github-release', function (done) {
+  conventionalGithubReleaser({
+    type: 'token',
+    token: 'f9adfd7008c327be6d5560ad9278887cfe39aa49' // change this to your own GitHub token or use an environment variable
+  }, {
+    preset: 'angular' // Or to any other commit message convention you use.
+  }, done)
+})
+
 gulp.task('commit', function () {
   return gulp.src('../*')
     .pipe(git.commit('Restauración de tag'))
@@ -31,12 +41,6 @@ gulp.task('commit', function () {
 
 gulp.task('push', function () {
   git.push('origin', 'master', function (err) {
-    if (err) throw err
-  })
-})
-
-gulp.task('push2', function () {
-  git.push('origin', function (err) {
     if (err) throw err
   })
 })
@@ -58,6 +62,7 @@ gulp.task('new-tag', function (done) {
 
 gulp.task('release', gulp.series(
   'commit',
-  'push2',
-  'new-tag'
+  'push',
+  'new-tag',
+  'github-release'
 ))
