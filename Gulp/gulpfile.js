@@ -27,7 +27,7 @@ gulp.task('compilar', function js () {
 gulp.task('commit', function () {
   return gulp.src('../*')
     .pipe(git.commit('Prueba1'))
-   
+    .pipe(tagVersion({ cwd: './dist' }))
 })
 
 gulp.task('push', function () {
