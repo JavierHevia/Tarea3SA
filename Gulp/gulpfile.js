@@ -4,6 +4,7 @@ const concat = require('gulp-concat')
 var conventionalGithubReleaser = require('conventional-github-releaser')
 var git = require('gulp-git')
 var fs = require('fs')
+var runSequence = require('run-sequence')
 // const uglify = require('gulp-uglify')
 // se ralizaára la siguiente tarea
 
@@ -36,6 +37,7 @@ gulp.task('github-release', function (done) {
 
 gulp.task('commit', function () {
   return gulp.src('../*')
+    .pipe(git.add())
     .pipe(git.commit('Restauración de tag'))
 })
 
