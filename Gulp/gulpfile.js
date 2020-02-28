@@ -63,6 +63,5 @@ gulp.task('new-tag', function (done) {
 gulp.task('release', gulp.series(
   'commit',
   'push',
-  'new-tag',
-  'github-release'
+  'new-tag'
 ))
