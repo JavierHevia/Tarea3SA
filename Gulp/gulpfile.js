@@ -40,11 +40,11 @@ gulp.task('commit', function () {
     .pipe(git.commit('Restauración de tag'))
 })
 
-gulp.task('push', function(){
-  git.push('origin', 'master', {args: " -f"}, function (err) {
-    if (err) throw err;
-  });
-});
+gulp.task('push', function () {
+  git.push('origin', 'master', function (err) {
+    if (err) throw err
+  })
+})
 
 gulp.task('new-tag', function (done) {
   var version = getPackageJsonVersion()
