@@ -2,7 +2,6 @@ var gulp = require('gulp')
 var zip = require('gulp-zip')
 const concat = require('gulp-concat')
 var git = require('gulp-git')
-var tagVersion = require('gulp-tag-version')
 var fs = require('fs')
 // const uglify = require('gulp-uglify')
 // se ralizaára la siguiente tarea
@@ -36,6 +35,12 @@ gulp.task('push', function () {
   })
 })
 
+gulp.task('push2', function () {
+  git.push('origin', function (err) {
+    if (err) throw err
+  })
+})
+
 gulp.task('new-tag', function (done) {
   var version = getPackageJsonVersion()
   git.tag(version, 'Created Tag for version: ' + version, function (error) {
@@ -53,6 +58,6 @@ gulp.task('new-tag', function (done) {
 
 gulp.task('release', gulp.series(
   'commit',
-  'push',
+  'push2',
   'new-tag'
 ))
