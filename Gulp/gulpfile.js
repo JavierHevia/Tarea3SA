@@ -3,6 +3,7 @@ var zip = require('gulp-zip')
 const concat = require('gulp-concat')
 var git = require('gulp-git')
 var tagVersion = require('gulp-tag-version')
+var fs = require('fs')
 // const uglify = require('gulp-uglify')
 // se ralizaára la siguiente tarea
 
@@ -27,7 +28,6 @@ gulp.task('compilar', function js () {
 gulp.task('commit', function () {
   return gulp.src('../*')
     .pipe(git.commit('Prueba1'))
-    .pipe(tagVersion({ cwd: './dist' }))
 })
 
 gulp.task('push', function () {
@@ -38,7 +38,29 @@ gulp.task('push', function () {
 
 // Tag the repo with a version
 gulp.task('tag', function () {
-  git.tag('v1.1.', 'Version message', function (err) {
+  git.tag('v1.1.3', 'Version message', function (err) {
     if (err) throw err
   })
 })
+
+gulp.task('new-tag', function (done) {
+  var version = getPackageJsonVersion();
+  git.tag(version, 'Created Tag for version: ' + version, function (error) {
+    if (error) {
+      return done(error);
+    }
+    git.push('origin', 'master', { args: '--tags' }, done)
+  })
+
+  function getPackageJsonVersion () {
+    // We parse the json file instead of using require because require caches
+    // multiple calls so the version number won't be updated
+    return JSON.parse(fs.readFileSync('../package.json', 'utf8')).version
+  }
+})
+
+gulp.task('release', gulp.series(
+  'commit',
+  'push',
+  'new-tag'
+))
