@@ -36,13 +36,6 @@ gulp.task('push', function () {
   })
 })
 
-// Tag the repo with a version
-gulp.task('tag', function () {
-  git.tag('v1.1.3', 'Version message', function (err) {
-    if (err) throw err
-  })
-})
-
 gulp.task('new-tag', function (done) {
   var version = getPackageJsonVersion()
   git.tag(version, 'Created Tag for version: ' + version, function (error) {
