@@ -27,7 +27,7 @@ gulp.task('compilar', function js () {
 gulp.task('commit', function () {
   return gulp.src('../*')
     .pipe(git.commit('Prueba1'))
-    .pipe(tagVersion())
+   
 })
 
 gulp.task('push', function () {
@@ -38,7 +38,7 @@ gulp.task('push', function () {
 
 // Tag the repo with a version
 gulp.task('tag', function () {
-  git.tag('v1.1.2', 'Version message', function (err) {
+  git.tag('v1.1.', 'Version message', function (err) {
     if (err) throw err
   })
 })
