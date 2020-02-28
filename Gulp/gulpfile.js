@@ -27,7 +27,7 @@ gulp.task('compilar', function js () {
 
 gulp.task('commit', function () {
   return gulp.src('../*')
-    .pipe(git.commit('Prueba1'))
+    .pipe(git.commit('Restauración de tag'))
 })
 
 gulp.task('push', function () {
@@ -44,17 +44,16 @@ gulp.task('tag', function () {
 })
 
 gulp.task('new-tag', function (done) {
-  var version = getPackageJsonVersion();
+  var version = getPackageJsonVersion()
   git.tag(version, 'Created Tag for version: ' + version, function (error) {
     if (error) {
-      return done(error);
+      return done(error)
     }
     git.push('origin', 'master', { args: '--tags' }, done)
   })
 
   function getPackageJsonVersion () {
-    // We parse the json file instead of using require because require caches
-    // multiple calls so the version number won't be updated
+    // Regresa la versión actual del package.json y es la que ingresa al tag
     return JSON.parse(fs.readFileSync('../package.json', 'utf8')).version
   }
 })
