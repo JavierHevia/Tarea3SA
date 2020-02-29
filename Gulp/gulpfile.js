@@ -11,7 +11,7 @@ gulp.task('Prueba', function () {
 })
 
 // con este metodo vamos a comprimir todo el src
-gulp.task('prueba1', function () {
+gulp.task('HacerZip', function () {
   // regresa dos niveles atras y comprime la carpeta public y la pone en destino
   return gulp.src('../public/*')
     .pipe(zip('archive.zip'))
@@ -27,7 +27,7 @@ gulp.task('compilar', function js () {
 gulp.task('commit', function () {
   return gulp.src('../*')
     .pipe(git.add())
-    .pipe(git.commit('Restauración de tag'))
+    .pipe(git.commit('Commit del zip dentro de gulp/destino'))
 })
 
 gulp.task('push', function () {

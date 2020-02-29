@@ -49,3 +49,23 @@ Creamos una carpeta llamada Gulp con el cual creamos un archivo .js llamado Gulp
 
   las librerías correspondientes y una forma de concatener todo los ficheros .js que existe en nuestra raiz del proyecto y ponerlo en un solo que le llamamos compilado.js. 
   el cual creamos un solo compilado para nuestro proyecto.
+
+  GULP:::
+
+  Nos dirigimos a la carpeta de Gulp.
+    cd Gulp
+  
+  Luego vamos a correr las siguientes tareas:
+      gulp HacerZip  
+
+  Con esto ejecutamos la tarea "HacerZip"
+
+  Luego ejecutamos nuestra tarea "release"
+      gulp release
+
+Esto nos hará un commit a nuestra rama master.
+
+Luego ejecutamos nuestra tarea "tag":
+      gulp tag
+
+La que hará una nueva versión e insersión del tag en github
