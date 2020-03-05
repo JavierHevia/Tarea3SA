@@ -2,9 +2,9 @@
   "name": "tarea1",
   "version": "1.2.0",
   "description": "",
-  "main": "ESB.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node ESB.js",
+    "start": "node src/Servidor.js",
     "dev": "nodemon --watch ESB.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

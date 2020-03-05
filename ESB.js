@@ -67,3 +67,8 @@ var rst = http.createServer(function (req, res) {
 rst.listen(puerto, host)
 console.log('Bienvenido!!! esperando ordenes...')
 // http://localhost:8080/ jenkis
+
+// "start": "node ESB.js",
+// "dev": "nodemon --watch ESB.js",
+// "test": "echo \"Error: no test specified\" && exit 1"
+//  "main": "ESB.js",
