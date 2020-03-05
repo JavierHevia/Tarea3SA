@@ -1,24 +1,22 @@
-var express = require('express')
-var app = express()
+'use strict'
+const express = require('express')
+const path = require('path')
+const serverless = require('serverless-http')
+const app = express()
+const bodyParser = require('body-parser')
 
-app.use(express.static(__dirname + '/Descargas/'))
-
-app.listen(3001, function () {
-  console.log('Servidor en http://localhost:3001')
+const router = express.Router()
+router.get('/', (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' })
+  res.write('<h1>Hello from Express.js!</h1>')
+  res.end()
 })
+router.get('/another', (req, res) => res.json({ route: req.originalUrl }))
+router.post('/', (req, res) => res.json({ postBody: req.body }))
 
-// app.get('/', function (req, res) {
-  // res.send('Hola mundo!! Express!!')
-// })
+app.use(bodyParser.json())
+app.use('/.netlify/functions/server', router) // path must route to lambda
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../Descargas/index.html')))
 
-app.get('/bienvenido/:nombre', function (req, res) { // http://localhost:3001/bienvenido/hola
-  res.send('Bienvenido!! ' + req.params.nombre + '!!')
-})
-
-
-// var express = require('express');
-// var app = express();
-// var router = express.Router();
-// router.use('/contenido',express.static('/mi_carpeta_en_servidor'));
-// app.use('/',router);
-// app.listen(8080);
+module.exports = app
+module.exports.handler = serverless(app)
