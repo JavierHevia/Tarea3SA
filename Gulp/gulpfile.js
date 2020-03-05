@@ -15,7 +15,7 @@ gulp.task('HacerZip', function () {
   // regresa dos niveles atras y comprime la carpeta public y la pone en destino
   return gulp.src('../public/*')
     .pipe(zip('archive.zip'))
-    .pipe(gulp.dest('distino'))
+    .pipe(gulp.dest('../Descargas'))
 })
 
 gulp.task('compilar', function js () {
